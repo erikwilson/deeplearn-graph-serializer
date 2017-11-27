@@ -1,6 +1,6 @@
 {
   "name": "deeplearn-graph-serializer",
-  "version": "0.0.1",
+  "version": "0.3.0",
   "description": "Serialize and deserialize DeepLearnJs graphs",
   "main": "src/lib.js",
   "scripts": {
