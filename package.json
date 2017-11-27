@@ -1,0 +1,28 @@
+{
+  "name": "deeplearn-graph-serializer",
+  "version": "0.0.1",
+  "description": "Serialize and deserialize DeepLearnJs graphs",
+  "main": "src/lib.js",
+  "scripts": {
+    "test": "nyc --reporter=html --reporter=text mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erikwilson/deeplearn-graph-serializer.git"
+  },
+  "author": "Erik Wilson",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/erikwilson/deeplearn-graph-serializer/issues"
+  },
+  "homepage": "https://github.com/erikwilson/deeplearn-graph-serializer#readme",
+  "dependencies": {
+    "deeplearn": "*"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "lodash": "^4.17.4",
+    "mocha": "^4.0.1",
+    "nyc": "^11.3.0"
+  }
+}

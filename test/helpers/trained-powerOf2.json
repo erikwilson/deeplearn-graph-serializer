@@ -1,0 +1,312 @@
+[
+  {
+    "type": "PlaceholderNode",
+    "name": "input",
+    "output": {
+      "id": 0,
+      "shape": [
+        3
+      ]
+    }
+  },
+  {
+    "type": "PlaceholderNode",
+    "name": "label",
+    "output": {
+      "id": 1,
+      "shape": [
+        1
+      ]
+    }
+  },
+  {
+    "type": "VariableNode",
+    "data": {
+      "values": [
+        -0.24192868173122406,
+        -0.27583545446395874,
+        -0.1310773640871048,
+        0.029285423457622528,
+        -0.8140682578086853,
+        -0.355746328830719,
+        0.5658272504806519,
+        -1.211413025856018,
+        -0.5101819038391113
+      ],
+      "shape": [
+        3,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "name": "layerIn-weights",
+    "output": {
+      "id": 2,
+      "shape": [
+        3,
+        3
+      ]
+    }
+  },
+  {
+    "type": "MatMulNode",
+    "name": "MatMul",
+    "inputs": {
+      "x1": {
+        "id": 0
+      },
+      "x2": {
+        "id": 2
+      }
+    },
+    "output": {
+      "id": 3,
+      "shape": [
+        3
+      ]
+    }
+  },
+  {
+    "type": "VariableNode",
+    "data": {
+      "values": [
+        0.001285372069105506,
+        -0.0008022509864531457,
+        0.000492894439958036
+      ],
+      "shape": [
+        3
+      ],
+      "dtype": "float32"
+    },
+    "name": "layerIn-bias",
+    "output": {
+      "id": 4,
+      "shape": [
+        3
+      ]
+    }
+  },
+  {
+    "type": "AddNode",
+    "name": "Add",
+    "inputs": {
+      "t1": {
+        "id": 3
+      },
+      "t2": {
+        "id": 4
+      }
+    },
+    "output": {
+      "id": 5,
+      "shape": [
+        3
+      ]
+    }
+  },
+  {
+    "type": "VariableNode",
+    "data": {
+      "values": [
+        0.4179244041442871,
+        -1.0311063528060913,
+        -0.8233819007873535,
+        0.5198845267295837,
+        -0.5962697267532349,
+        0.9067560434341431,
+        -0.7809673547744751,
+        -0.7408832311630249,
+        -0.0016127200797200203
+      ],
+      "shape": [
+        3,
+        3
+      ],
+      "dtype": "float32"
+    },
+    "name": "layerHidden1-weights",
+    "output": {
+      "id": 6,
+      "shape": [
+        3,
+        3
+      ]
+    }
+  },
+  {
+    "type": "MatMulNode",
+    "name": "MatMul",
+    "inputs": {
+      "x1": {
+        "id": 5
+      },
+      "x2": {
+        "id": 6
+      }
+    },
+    "output": {
+      "id": 7,
+      "shape": [
+        3
+      ]
+    }
+  },
+  {
+    "type": "VariableNode",
+    "data": {
+      "values": [
+        -0.00017172536172438413,
+        -0.0003933292464353144,
+        -0.001204857835546136
+      ],
+      "shape": [
+        3
+      ],
+      "dtype": "float32"
+    },
+    "name": "layerHidden1-bias",
+    "output": {
+      "id": 8,
+      "shape": [
+        3
+      ]
+    }
+  },
+  {
+    "type": "AddNode",
+    "name": "Add",
+    "inputs": {
+      "t1": {
+        "id": 7
+      },
+      "t2": {
+        "id": 8
+      }
+    },
+    "output": {
+      "id": 9,
+      "shape": [
+        3
+      ]
+    }
+  },
+  {
+    "type": "VariableNode",
+    "data": {
+      "values": [
+        -0.15336918830871582,
+        -0.2742004096508026,
+        -1.1549925804138184
+      ],
+      "shape": [
+        3,
+        1
+      ],
+      "dtype": "float32"
+    },
+    "name": "layerOut-weights",
+    "output": {
+      "id": 10,
+      "shape": [
+        3,
+        1
+      ]
+    }
+  },
+  {
+    "type": "MatMulNode",
+    "name": "MatMul",
+    "inputs": {
+      "x1": {
+        "id": 9
+      },
+      "x2": {
+        "id": 10
+      }
+    },
+    "output": {
+      "id": 11,
+      "shape": [
+        1
+      ]
+    }
+  },
+  {
+    "type": "VariableNode",
+    "data": {
+      "values": [
+        0.0011480763787403703
+      ],
+      "shape": [
+        1
+      ],
+      "dtype": "float32"
+    },
+    "name": "layerOut-bias",
+    "output": {
+      "id": 12,
+      "shape": [
+        1
+      ]
+    }
+  },
+  {
+    "type": "AddNode",
+    "name": "Add",
+    "inputs": {
+      "t1": {
+        "id": 11
+      },
+      "t2": {
+        "id": 12
+      }
+    },
+    "output": {
+      "id": 13,
+      "shape": [
+        1
+      ]
+    }
+  },
+  {
+    "type": "VariableNode",
+    "data": {
+      "id": 13
+    },
+    "name": "output",
+    "output": {
+      "id": 14,
+      "shape": [
+        1
+      ]
+    }
+  },
+  {
+    "type": "MeanSquaredCostNode",
+    "name": "Mean Squared Cost",
+    "inputs": {
+      "label": {
+        "id": 1
+      },
+      "prediction": {
+        "id": 13
+      }
+    },
+    "output": {
+      "id": 15,
+      "shape": []
+    }
+  },
+  {
+    "type": "VariableNode",
+    "data": {
+      "id": 15
+    },
+    "name": "cost",
+    "output": {
+      "id": 16,
+      "shape": []
+    }
+  }
+]
