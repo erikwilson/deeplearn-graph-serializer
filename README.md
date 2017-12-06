@@ -1,4 +1,5 @@
-![travis-ci](https://api.travis-ci.org/erikwilson/deeplearn-graph-serializer.svg)
+[![travis-ci](https://api.travis-ci.org/erikwilson/deeplearn-graph-serializer.svg "travis-ci")](https://travis-ci.org/erikwilson/deeplearn-graph-serializer)
+
 # deeplearn-graph-serializer
 **WARNING:** This is an unofficial serialization/deserialization library for DeepLearnJs graphs. It may be fragile and break with future revisions.
 
@@ -20,7 +21,7 @@ const { graph, placeholders, variables, tensors } = net
 The `GraphSerializer.jsonToGraph` method returns a graph object, any tensors created, placeholder references to tensors by name, and variable data by name.
 
 ## Advanced Usage
-The `GraphSerializer.graphToJson` method normally returns a JSON that references tensors starting from id `0`. To preserve the tensor id we can pass `false` as the second parameter to `GraphSerializer.graphToJson`. In this way it is possible to serialize a collection of graphs that reference tensors outside of their own graph:
+The `GraphSerializer.graphToJson` method normally returns a JSON that references tensors starting from id `0`. To preserve the tensor id we can pass `false` as the second parameter to `GraphSerializer.graphToJson`. In this way it is possible to serialize a collection of graphs that reference shared tensors:
 
 ```js
 const graph1 = new Graph()
@@ -33,7 +34,7 @@ const graph1Json = GraphSerializer.graphToJson(graph1, false)
 const graph2Json = GraphSerializer.graphToJson(graph2, false)
 ```
 
-Then when using `GraphSerializer.jsonToGraph` we would pass a tensor object as the second parameter, this allows the deserializer to reference tensors from other deserialized graphs:
+Then when using `GraphSerializer.jsonToGraph` we would pass a deserialized tensors object as the second parameter, this allows the deserializer to chain tensor references from other graphs:
 
 ```js
 let deserial =  GraphSerializer.jsonToGraph(graph1Json)

@@ -1,9 +1,9 @@
 const DeepLearn = require('deeplearn')
 const GraphSerializer = require('../../src/lib')
 
-const { Scalar, Array1D } = DeepLearn
+const { Array1D } = DeepLearn
 const { InCPUMemoryShuffledInputProviderBuilder } = DeepLearn
-const { CostReduction, FeedEntry, SGDOptimizer } = DeepLearn
+const { CostReduction, SGDOptimizer } = DeepLearn
 const { Graph, Session, NDArrayMathCPU } = DeepLearn
 
 const math = new NDArrayMathCPU()
@@ -14,9 +14,9 @@ module.exports = {
     const input = graph.placeholder('input', [3])
     const label = graph.placeholder('label', [1])
 
-    let fullyConnectedLayer = graph.layers.dense(`layerIn`, input, 3)
-    // fullyConnectedLayer = graph.layers.dense(`layerHidden1`, fullyConnectedLayer, 3)
-    const output = graph.layers.dense(`layerOut`, fullyConnectedLayer, 1)
+    let fullyConnectedLayer = graph.layers.dense('layerIn', input, 3)
+    // fullyConnectedLayer = graph.layers.dense('layerHidden1', fullyConnectedLayer, 3)
+    const output = graph.layers.dense('layerOut', fullyConnectedLayer, 1)
     graph.variable('output', output)
 
     const cost = graph.meanSquaredCost(label, output)
@@ -61,8 +61,8 @@ module.exports = {
   },
 
   runNetwork: function ({ graph, input, output }, values) {
-    const session = new Session(graph, math);
-    const data = Array1D.new(values);
+    const session = new Session(graph, math)
+    const data = Array1D.new(values)
     const feedEntries = [{tensor: input, data}]
     return session.eval(output, feedEntries)
   },

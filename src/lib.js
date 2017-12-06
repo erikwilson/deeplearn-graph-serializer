@@ -49,7 +49,7 @@ function jsonToGraph( nodes, tensors={} ) {
   const variables = {}
 
   for (let node of nodes) {
-    const { name, type, data, dtype, inputs, output } = node
+    const { name, type, inputs, output } = node
 
     const getTensor = (info) => {
       const { id, dtype, shape } = info

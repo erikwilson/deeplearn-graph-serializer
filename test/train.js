@@ -1,5 +1,10 @@
 const GraphSerializer = require('../src/lib')
-const { createNetwork, trainNetwork, runNetwork, deserialNetwork } = require('./helpers/network_util')
+const {
+  createNetwork,
+  trainNetwork,
+  runNetwork,
+  deserialNetwork
+} = require('./helpers/network_util')
 const { expect } = require('chai')
 
 describe('When setting up a new training graph and clone', () => {
