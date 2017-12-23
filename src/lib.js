@@ -1,4 +1,4 @@
-const { Scalar, Graph } = require('deeplearn')
+const { Scalar, Tensor, Graph } = require('deeplearn')
 
 //------------------------------------------------------------------------------
 
@@ -9,17 +9,17 @@ function graphToJson( graph, idStartsAtZero=true ) {
   let idOffset = 0
   if (idStartsAtZero) idOffset = graphNodes[0].id
 
-  const tensorToJson = (tensor) => {
-    if (tensor.id !== undefined) return {id:(tensor.id-idOffset)}
-    const { shape, dtype } = tensor
-    const values = Array.from(tensor.getValues())
+  const dataToJson = (data) => {
+    if (data instanceof Tensor) return {id:(data.id-idOffset)}
+    const { shape, dtype } = data
+    const values = Array.from(data.getValues())
     return { values, shape, dtype }
   }
 
   const jsonNodes = []
   for (let node of graphNodes) {
     const jsonNode = { type: node.constructor.name }
-    if (node.data) jsonNode.data = tensorToJson(node.data)
+    if (node.data) jsonNode.data = dataToJson(node.data)
 
     for (let v in node) {
       if (node[v] instanceof Object) continue
@@ -30,10 +30,10 @@ function graphToJson( graph, idStartsAtZero=true ) {
     if (Object.keys(node.inputs).length > 0) {
       jsonNode.inputs = {}
       for (let v in node.inputs) {
-        jsonNode.inputs[v] = tensorToJson(node.inputs[v])
+        jsonNode.inputs[v] = dataToJson(node.inputs[v])
       }
     }
-    jsonNode.output = tensorToJson(node.output)
+    jsonNode.output = dataToJson(node.output)
     jsonNode.output.shape = node.output.shape
     jsonNodes.push(jsonNode)
   }
@@ -167,6 +167,12 @@ function jsonToGraph( nodes, tensors={} ) {
         const { shape } = output
         tensors[output.id] = placeholders[name] =
           graph.placeholder( name, shape )
+      },
+      PReLUNode: () => {
+        const x = getTensor(inputs.x)
+        const alpha = getTensor(inputs.alpha)
+        tensors[output.id] =
+          graph.prelu( x, alpha )
       },
       ReduceSumNode: () => {
         const x = getTensor(inputs.x)

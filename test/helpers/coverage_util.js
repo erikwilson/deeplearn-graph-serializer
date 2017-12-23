@@ -41,6 +41,7 @@ module.exports = {
     addNode('meanSquaredCost', t1_2d, t2_2d )
     addNode('multiply', t1_3d, t2_3d )
     addNode('placeholder','test', [1,2])
+    addNode('prelu', t1_3d, t1_3d)
     addNode('reduceSum', t1_4d )
     addNode('relu', t1_3d )
     addNode('reshape', t2_4d, [4] )
