@@ -3,6 +3,7 @@ node_js:
 - '8'
 branches:
   only:
+    - master
     - '/^v[0-9]/'
 deploy:
   provider: npm
@@ -11,5 +12,4 @@ deploy:
     secure: qF9q9hmHGkTdCIxIS8MbEhhMuMgCm8kHjX1p4sxo+ygMuYIfycwWkXqdNJeXoekSpEQHaSmIL7bGkZ5I4EI8wP7MayDUIqVcosb2jxZIec5GXrxWRdZwMyWR7NdyQhrOGqXiYVJUkP86cR3hkHYrWP11NWn5yMoHPaOLdjD2ON8N8s/t4ljx7Z931EiAoA0PRAXDZR9hjxWvYdludbifUZMUUWlz5WGzt2Y6t0Rtdx/E2CZ3/wgSqukxqr1HGKT5ZvtmEMeXQJJ0z8sJLLoStNXnsmC7FNNdBM4E/AEkSyU8ezLGBJQaZW02Gg+5jLzYnr2ijK2uc8bEXhJxrTEsAQrMmbrzy4AvrHKtZIg+VGfX8rcm1/6ETp/12/6bnPDEdxHuSaeZr4qM/FKVYLfdP5TwaZ/JAmKWyWp2WsR70ppFDJ3ax6ROHxegWyebI1ADFUAyWYyUlnl73mq5pnBtuUXc35v2JIL8e3u05VWW5VK5ucqfeXJ2qPLQFUn94m7/7po1rX7rI/MBj05TWcUEZyE6ON8MNsumHHHckeC0K/0I53u9mvYxSuRpMhSXXDT/jxd2JLyXewndMBJgAWQqNywdnJob9G5+FSCwyaqJSkD4VdFy5dJnwzScG33uEzTwAniSX+XsUlEW5mHm6tVB+af9jOvI0ZJSjnHXf/q0r7k=
   on:
     tags: true
-    branches: true
     repo: erikwilson/deeplearn-graph-serializer
