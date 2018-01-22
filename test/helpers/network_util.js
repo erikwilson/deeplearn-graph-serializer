@@ -4,9 +4,9 @@ const GraphSerializer = require('../../src/lib')
 const { Array1D } = DeepLearn
 const { InCPUMemoryShuffledInputProviderBuilder } = DeepLearn
 const { CostReduction, SGDOptimizer } = DeepLearn
-const { Graph, Session, NDArrayMathCPU } = DeepLearn
+const { Graph, Session, NDArrayMath } = DeepLearn
 
-const math = new NDArrayMathCPU()
+const math = new NDArrayMath('cpu')
 
 module.exports = {
   createNetwork: function () {

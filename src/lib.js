@@ -84,12 +84,32 @@ function jsonToGraph( nodes, tensors={} ) {
         tensors[output.id] =
           graph.argmaxEquals( x1, x2 )
       },
+      Concat1DNode: () => {
+        const x1 = getTensor(inputs.x1)
+        const x2 = getTensor(inputs.x2)
+        tensors[output.id] =
+          graph.concat1d( x1, x2 )
+      },
+      Concat2DNode: () => {
+        const x1 = getTensor(inputs.x1)
+        const x2 = getTensor(inputs.x2)
+        const { axis } = node
+        tensors[output.id] =
+          graph.concat2d( x1, x2, axis )
+      },
       Concat3DNode: () => {
         const x1 = getTensor(inputs.x1)
         const x2 = getTensor(inputs.x2)
         const { axis } = node
         tensors[output.id] =
           graph.concat3d( x1, x2, axis )
+      },
+      Concat4DNode: () => {
+        const x1 = getTensor(inputs.x1)
+        const x2 = getTensor(inputs.x2)
+        const { axis } = node
+        tensors[output.id] =
+          graph.concat4d( x1, x2, axis )
       },
       ConstantNode: () => {
         const data = getTensor(node.data)

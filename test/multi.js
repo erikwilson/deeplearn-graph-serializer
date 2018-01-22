@@ -1,10 +1,10 @@
 const GraphSerializer = require('../src/lib')
-const { Graph, Session, NDArrayMathCPU, Scalar } = require('deeplearn')
+const { Graph, Session, NDArrayMath, Scalar } = require('deeplearn')
 const { expect } = require('chai')
 
 describe('Creating a graph that uses a variable from another graph', () => {
 
-  const math = new NDArrayMathCPU()
+  const math = new NDArrayMath('cpu')
 
   const g1 = new Graph()
   const v = g1.variable('v',Scalar.new(2))
