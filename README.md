@@ -1,7 +1,7 @@
 [![travis-ci](https://api.travis-ci.org/erikwilson/deeplearn-graph-serializer.svg "travis-ci")](https://travis-ci.org/erikwilson/deeplearn-graph-serializer)
 
 # deeplearn-graph-serializer
-**WARNING:** This is an unofficial serialization/deserialization library for DeepLearnJs graphs. It may be fragile and break with future revisions.
+**WARNING:** This is an unofficial serialization/deserialization library for DeepLearnJs graphs, it is currently obsolete and only compatible with DeepLearnJs versions less than 0.5.
 
 ## Usage
 Require or import this module in your code:
