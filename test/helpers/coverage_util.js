@@ -5,8 +5,8 @@ module.exports = {
   createGraph: () => {
     const graph = new Graph()
 
-    const t1_s = Scalar.new([1], 'bool')
-    const t2_s = Scalar.new([2], 'int32')
+    const t1_s = Scalar.new(1, 'bool')
+    const t2_s = Scalar.new(2, 'int32')
     const t1_1d = Array1D.new([1, 2, 3, 4])
     const t2_1d = Array1D.new([5, 6, 7, 8])
     const t1_2d = Array2D.new([2, 2], [1, 2, 3, 4])

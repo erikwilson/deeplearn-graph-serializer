@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/erikwilson/deeplearn-graph-serializer#readme",
   "dependencies": {
-    "deeplearn": "<0.5"
+    "deeplearn": "~0.5"
   },
   "devDependencies": {
     "chai": "^4.1.2",

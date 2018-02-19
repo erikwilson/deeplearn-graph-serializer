@@ -7,7 +7,8 @@ const {
 } = require('./helpers/network_util')
 const { expect } = require('chai')
 
-describe('When setting up a new training graph and clone', () => {
+describe('When setting up a new training graph and clone', function() {
+  this.timeout(5000)
 
   let { originalNet, originalSerial, cloneNet, cloneSerial } = {}
 
@@ -31,7 +32,6 @@ describe('When setting up a new training graph and clone', () => {
   })
 
   describe('After training original and clone networks', () => {
-
     let { result1, result2 } = {}
 
     before(async () => {

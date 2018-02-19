@@ -1,7 +1,7 @@
 [![travis-ci](https://api.travis-ci.org/erikwilson/deeplearn-graph-serializer.svg "travis-ci")](https://travis-ci.org/erikwilson/deeplearn-graph-serializer)
 
 # deeplearn-graph-serializer
-**WARNING:** This is an unofficial serialization/deserialization library for DeepLearnJs graphs, it is currently obsolete and only compatible with DeepLearnJs versions less than 0.5.
+**WARNING:** This is an unofficial serialization/deserialization library for DeepLearnJs graphs, it is currently obsolete and only compatible with DeepLearnJs versions less than 0.6.
 
 ## Usage
 Require or import this module in your code:
@@ -38,7 +38,7 @@ Then when using `GraphSerializer.jsonToGraph` we would pass a deserialized tenso
 
 ```js
 let deserial =  GraphSerializer.jsonToGraph(graph1Json)
-deserial.variables.v.set(3)
+// deserial.variables.v.set(3) // no longer works
 deserial =  GraphSerializer.jsonToGraph(graph2Json, deserial.tensors)
 const session = new Session(deserial.graph, math)
 const squared = await session.eval(deserial.variables.result).val(0)

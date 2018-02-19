@@ -1,4 +1,4 @@
-const { Scalar, Tensor, Graph } = require('deeplearn')
+const { Scalar, SymbolicTensor, Graph } = require('deeplearn')
 
 //------------------------------------------------------------------------------
 
@@ -10,7 +10,7 @@ function graphToJson( graph, idStartsAtZero=true ) {
   if (idStartsAtZero) idOffset = graphNodes[0].id
 
   const dataToJson = (data) => {
-    if (data instanceof Tensor) return {id:(data.id-idOffset)}
+    if (data instanceof SymbolicTensor) return {id:(data.id-idOffset)}
     const { shape, dtype } = data
     const values = Array.from(data.getValues())
     return { values, shape, dtype }
