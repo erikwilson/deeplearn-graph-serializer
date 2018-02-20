@@ -1,19 +1,19 @@
 const GraphSerializer = require('../src/lib')
-const { Graph, Session, NDArrayMath, Scalar } = require('deeplearn')
+const dl = require('deeplearn')
 const { expect } = require('chai')
 
 describe('Creating a graph that uses a variable from another graph', () => {
 
-  const math = new NDArrayMath('cpu')
+  const math = new dl.NDArrayMath('cpu')
 
-  const g1 = new Graph()
-  const v = g1.variable('v',Scalar.new(2))
-  const g2 = new Graph()
+  const g1 = new dl.Graph()
+  const v = g1.variable('v', dl.variable(dl.scalar(2)))
+  const g2 = new dl.Graph()
   const result = g2.multiply(v,v)
   g2.variable('result',result)
 
   it('Should produce correct results', async () => {
-    let session = new Session(g2, math)
+    let session = new dl.Session(g2, math)
     let squared = await session.eval(result).val(0)
     expect(squared).to.equal(4)
   })
@@ -31,10 +31,10 @@ describe('Creating a graph that uses a variable from another graph', () => {
     const g1Serial = GraphSerializer.graphToJson(g1, false)
     const g2Serial = GraphSerializer.graphToJson(g2, false)
     deserial =  GraphSerializer.jsonToGraph(g1Serial)
-    // deserial.variables.v.set(3)
+    deserial.variables.v.assign(dl.scalar(3))
     deserial =  GraphSerializer.jsonToGraph(g2Serial, deserial.tensors)
-    const session = new Session(deserial.graph, math)
+    const session = new dl.Session(deserial.graph, math)
     const squared = await session.eval(deserial.variables.result).val(0)
-    expect(squared).to.equal(4)
+    expect(squared).to.equal(9)
   })
 })

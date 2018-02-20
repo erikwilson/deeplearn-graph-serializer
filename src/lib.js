@@ -1,4 +1,4 @@
-const { Scalar, SymbolicTensor, Graph } = require('deeplearn')
+const dl = require('deeplearn')
 
 //------------------------------------------------------------------------------
 
@@ -10,7 +10,7 @@ function graphToJson( graph, idStartsAtZero=true ) {
   if (idStartsAtZero) idOffset = graphNodes[0].id
 
   const dataToJson = (data) => {
-    if (data instanceof SymbolicTensor) return {id:(data.id-idOffset)}
+    if (data instanceof dl.SymbolicTensor) return {id:(data.id-idOffset)}
     const { shape, dtype } = data
     const values = Array.from(data.getValues())
     return { values, shape, dtype }
@@ -44,7 +44,7 @@ function graphToJson( graph, idStartsAtZero=true ) {
 
 function jsonToGraph( nodes, tensors={} ) {
 
-  const graph = new Graph()
+  const graph = new dl.Graph()
   const placeholders = {}
   const variables = {}
 
@@ -63,7 +63,7 @@ function jsonToGraph( nodes, tensors={} ) {
       if (dtype === 'int32') values = Int32Array.from(values)
       if (dtype === 'bool') values = Uint8Array.from(values)
 
-      return Scalar.make( shape, {values}, dtype )
+      return dl.variable( dl.tensor(values, shape, dtype) )
     }
 
     const gFunc = {

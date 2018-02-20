@@ -25,7 +25,7 @@ The `GraphSerializer.graphToJson` method normally returns a JSON that references
 
 ```js
 const graph1 = new Graph()
-const v = graph1.variable('v',Scalar.new(2))
+const v = graph1.variable('v',dl.variable(dl.scalar(2)))
 const graph2 = new Graph()
 const result = graph2.multiply(v,v)
 graph2.variable('result',result)
@@ -38,7 +38,7 @@ Then when using `GraphSerializer.jsonToGraph` we would pass a deserialized tenso
 
 ```js
 let deserial =  GraphSerializer.jsonToGraph(graph1Json)
-// deserial.variables.v.set(3) // no longer works
+deserial.variables.v.assign(dl.scalar(3))
 deserial =  GraphSerializer.jsonToGraph(graph2Json, deserial.tensors)
 const session = new Session(deserial.graph, math)
 const squared = await session.eval(deserial.variables.result).val(0)
